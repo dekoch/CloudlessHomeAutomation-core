@@ -1,1 +1,1 @@
-# CloudlessHomeAutomation-tools
+# CloudlessHomeAutomation-core

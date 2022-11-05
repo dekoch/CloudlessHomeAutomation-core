@@ -39,7 +39,7 @@ class ConfigMesh {
       }
     }
 
-    void UpdateConfigMesh(String newConfig) {
+    bool UpdateConfigMesh(String newConfig) {
       uint32_t myRev = GetRevision(Json);
       uint32_t newRev = GetRevision(newConfig);
 
@@ -47,7 +47,7 @@ class ConfigMesh {
 
       if (myRev >= newRev) {
         Serial.println("keep configMesh " + Json);
-        return;
+        return false;
       }
 
       Json = newConfig;
@@ -61,11 +61,12 @@ class ConfigMesh {
       }
 
       if (fileRev >= newRev) {
-        return;
+        return false;
       }
 
       WriteFile(CONFIG_MESH_FILE, Json);
       Serial.println("updated " + String(CONFIG_MESH_FILE) + " " + Json);
+      return true;
     }
 
     uint32_t GetNodeId(String node) {

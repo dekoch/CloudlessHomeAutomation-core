@@ -73,12 +73,11 @@ class ConfigMesh {
 
       DynamicJsonDocument doc(1024);
       deserializeJson(doc, Json);
-      JsonObject jsonObj = doc.as<JsonObject>();
 
-      for (int i = 0; i < jsonObj["nCnt"].as<int>(); i++) {
+      for (int i = 0; i < doc["nCnt"].as<int>(); i++) {
 
-        if (jsonObj["n"][i]["name"].as<String>() == node) {
-          return jsonObj["n"][i]["nodeId"].as<uint32_t>();
+        if (doc["n"][i]["name"].as<String>() == node) {
+          return doc["n"][i]["nodeId"].as<uint32_t>();
         }
       }
 
@@ -89,12 +88,11 @@ class ConfigMesh {
 
       DynamicJsonDocument doc(1024);
       deserializeJson(doc, Json);
-      JsonObject jsonObj = doc.as<JsonObject>();
 
-      for (int i = 0; i < jsonObj["nCnt"].as<int>(); i++) {
+      for (int i = 0; i < doc["nCnt"].as<int>(); i++) {
 
-        if (jsonObj["n"][i]["nodeId"].as<uint32_t>() == nodeId) {
-          return jsonObj["n"][i]["name"].as<String>();
+        if (doc["n"][i]["nodeId"].as<uint32_t>() == nodeId) {
+          return doc["n"][i]["name"].as<String>();
         }
       }
 

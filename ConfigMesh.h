@@ -2,29 +2,28 @@
 #define CONFIG_MESH_FILE  "config_mesh.json"
 
 /*
-config_mesh.json
-{
-  "t":"config_mesh.json",
-  "rev":1,
-  "nCnt":2,
-  "n":[
-    {
-      "nodeId":2503482707,
-      "name":"KeGaLi"
-    },
-    {
-      "nodeId":2786085503,
-      "name":"KeWkSw"
-    }
-  ]
-}
-
+  config_mesh.json
+  {
+    "t":"config_mesh.json",
+    "rev":3,
+    "nCnt":2,
+    "n":[
+      {
+        "nodeId":2503482707,
+        "name":"KeWkLi"
+      },
+      {
+        "nodeId":2503414767,
+        "name":"KeWkGaSw"
+      }
+    ]
+  }
 */
 
 class ConfigMesh {
   public:
     // initial value
-    String Json = "{\"t\":\"" + String(CONFIG_MESH_FILE) + "\",\"rev\":2,\"nCnt\":2,\"n\":[{\"nodeId\":2503482707,\"name\":\"KeGaLi\"},{\"nodeId\":2786085503,\"name\":\"KeWkSw\"}]}";
+    String Json = "{\"t\":\"" + String(CONFIG_MESH_FILE) + "\",\"rev\":3,\"nCnt\":2,\"n\":[{\"nodeId\":2503482707,\"name\":\"KeGaLi\"},{\"nodeId\":2503414767,\"name\":\"KeWkGaSw\"}]}";
 
     ConfigMesh() {}
 
@@ -40,13 +39,8 @@ class ConfigMesh {
     }
 
     bool UpdateConfigMesh(String newConfig) {
-      uint32_t myRev = GetRevision(Json);
-      uint32_t newRev = GetRevision(newConfig);
-
-      Serial.println("myRev=" + String(myRev) + " newRev=" + String(newRev));
-
-      if (myRev >= newRev) {
-        Serial.println("keep configMesh " + Json);
+      
+      if (CompareRevision(Json, newConfig) == false) {
         return false;
       }
 
@@ -54,18 +48,13 @@ class ConfigMesh {
       Serial.println("updated configMesh " + Json);
 
       String temp = ReadFile(CONFIG_MESH_FILE);
-      uint32_t fileRev;
 
-      if (temp != "") {
-        fileRev = GetRevision(temp);
-      }
-
-      if (fileRev >= newRev) {
+      if (CompareRevision(temp, newConfig) == false) {
         return false;
       }
 
-      WriteFile(CONFIG_MESH_FILE, Json);
-      Serial.println("updated " + String(CONFIG_MESH_FILE) + " " + Json);
+      WriteFile(CONFIG_MESH_FILE, newConfig);
+      Serial.println("updated " + String(CONFIG_MESH_FILE) + " " + newConfig);
       return true;
     }
 

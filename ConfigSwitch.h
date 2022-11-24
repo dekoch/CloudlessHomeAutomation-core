@@ -2,38 +2,38 @@
 #define CONFIG_SWITCH_FILE  "config_switch.json"
 
 /*
-  config_switch.json
-  {
-    "t":"config_switch.json",
-    "rev":13,
-    "gCnt":1,
-    "g":[
-      {
-        "name":"Toggle",
-        "tCnt":2,
-        "t":[
-          {
-            "node":"KeWkGaSw",
-            "di":0,
-            "state":false
-          },
-          {
-            "node":"KeWkGaSw",
-            "di":0,
-            "state":true
-          }
-        ],
-        "nCnt":1,
-        "n":[
-          {
-            "node":"KeGaLi",
-            "do":0,
-            "setState":"Tog"
-          }
-        ]
-      }
-    ]
-  }
+config_switch.json
+{
+  "t":"config_switch.json",
+  "rev":13,
+  "gCnt":1,
+  "g":[
+    {
+      "name":"Toggle",
+      "tCnt":2,
+      "t":[
+        {
+          "node":"KeWkGaSw",
+          "di":0,
+          "state":false
+        },
+        {
+          "node":"KeWkGaSw",
+          "di":0,
+          "state":true
+        }
+      ],
+      "nCnt":1,
+      "n":[
+        {
+          "node":"KeGaLi",
+          "do":0,
+          "setState":"Tog"
+        }
+      ]
+    }
+  ]
+}
 */
 
 class ConfigSwitch {
@@ -50,11 +50,11 @@ class ConfigSwitch {
         WriteFile(CONFIG_SWITCH_FILE, Json);
       } else {
         Serial.println(String(CONFIG_SWITCH_FILE) + " " + temp);
-        UpdateConfigSwitch(temp);
+        Update(temp);
       }
     }
 
-    bool UpdateConfigSwitch(String newConfig) {
+    bool Update(String newConfig) {
 
       if (CompareRevision(Json, newConfig) == false) {
         return false;

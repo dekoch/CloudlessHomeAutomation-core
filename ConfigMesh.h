@@ -2,22 +2,34 @@
 #define CONFIG_MESH_FILE  "config_mesh.json"
 
 /*
-  config_mesh.json
-  {
-    "t":"config_mesh.json",
-    "rev":3,
-    "nCnt":2,
-    "n":[
-      {
-        "nodeId":2503482707,
-        "name":"KeWkLi"
-      },
-      {
-        "nodeId":2503414767,
-        "name":"KeWkGaSw"
-      }
-    ]
-  }
+config_mesh.json
+{
+  "t":"config_mesh.json",
+  "rev":6,
+  "nCnt":5,
+  "n":[
+    {
+      "nodeId":2503482707,
+      "name":"KeWkLi"
+    },
+    {
+      "nodeId":2503414767,
+      "name":"KeWkGaSw"
+    },
+    {
+      "nodeId":2141195262,
+      "name":"SonoffS20"
+    },
+    {
+      "nodeId":432742653,
+      "name":"Shelly1PM"
+    },
+    {
+      "nodeId":1416346201,
+      "name":"Shelly2.5"
+    }
+  ]
+}
 */
 
 class ConfigMesh {
@@ -34,11 +46,11 @@ class ConfigMesh {
         WriteFile(CONFIG_MESH_FILE, Json);
       } else {
         Serial.println(String(CONFIG_MESH_FILE) + " " + temp);
-        UpdateConfigMesh(temp);
+        Update(temp);
       }
     }
 
-    bool UpdateConfigMesh(String newConfig) {
+    bool Update(String newConfig) {
       
       if (CompareRevision(Json, newConfig) == false) {
         return false;

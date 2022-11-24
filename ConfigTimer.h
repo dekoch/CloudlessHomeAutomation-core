@@ -2,20 +2,20 @@
 #define CONFIG_TIMER_FILE  "config_timer.json"
 
 /*
-  config_timer.json
-  {
-    "t":"config_timer.json",
-    "rev":1,
-    "timCnt":1,
-    "tim":[
-      {
-        "name":"Licht AUS",
-        "n":"KeWkLi",
-        "t":"autoOff",
-        "d":1
-      }
-    ]
-  }
+config_timer.json
+{
+  "t":"config_timer.json",
+  "rev":1,
+  "timCnt":1,
+  "tim":[
+    {
+      "name":"Licht AUS",
+      "n":"KeWkLi",
+      "t":"autoOff",
+      "d":1
+    }
+  ]
+}
 */
 
 class ConfigTimer {
@@ -32,11 +32,11 @@ class ConfigTimer {
         WriteFile(CONFIG_TIMER_FILE, Json);
       } else {
         Serial.println(String(CONFIG_TIMER_FILE) + " " + temp);
-        UpdateConfigTimer(temp);
+        Update(temp);
       }
     }
 
-    bool UpdateConfigTimer(String newConfig) {
+    bool Update(String newConfig) {
       
       if (CompareRevision(Json, newConfig) == false) {
         return false;

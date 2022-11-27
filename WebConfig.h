@@ -78,10 +78,6 @@ void NotFound(AsyncWebServerRequest *request) {
 
 void WebConfigSetup() {
 
-    configMesh.Read();
-    configSwitch.Read();
-    configTimer.Read();
-
     serverConfig = new AsyncWebServer(CONFIG_PORT);
 
     // <IP>?page=home

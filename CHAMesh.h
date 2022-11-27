@@ -1,6 +1,8 @@
 
 #include <painlessMesh.h>
 #include "Fs.h"
+#include "Edge.h"
+#include "Timer.h"
 #include "Config.h"
 #include "ConfigWifi.h"
 #include "ConfigMesh.h"
@@ -100,20 +102,7 @@ uint8_t GetChannel() {
     return bestChannel;
 }
 
-void MeshSetup() {
-
-    uint8_t channel = GetChannel();
-    //Serial.println("AP at channel " + String(channel));
-
-    mesh.setDebugMsgTypes(ERROR | STARTUP);  // set before init() so that you can see error messages
-
-    mesh.init(MESH_SSID, MESH_PASSWORD, &userScheduler, MESH_PORT, WIFI_AP_STA, channel);
-    mesh.onNewConnection(&newConnectionCallback);
-    mesh.onChangedConnections(&changedConnectionCallback);
-    mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
-    mesh.onNodeDelayReceived(&delayReceivedCallback);
-    mesh.initOTAReceive(FIRMWARE);
-
+String GetMyName() {
     String nodeId = String(mesh.getNodeId());
     myName = configMesh.GetNodeName(mesh.getNodeId());
 
@@ -123,6 +112,40 @@ void MeshSetup() {
 
     Serial.println("NodeID " + nodeId);
     Serial.println("NodeName " + myName);
+    return myName;
+}
+
+void MeshSetup() {
+
+    configMesh.Read();
+    configSwitch.Read();
+    configTimer.Read();
+
+    uint8_t channel = GetChannel();
+    //Serial.println("AP at channel " + String(channel));
+
+    mesh.setDebugMsgTypes(ERROR | STARTUP);  // set before init() so that you can see error messages
+
+    mesh.init(MESH_SSID, MESH_PASSWORD, &userScheduler, MESH_PORT, WIFI_AP_STA, channel);
+
+    // need mesh.init() for nodeId
+    WiFiMode_t connectMode = configMesh.GetConnectMode(mesh.getNodeId());
+
+    if (connectMode != WIFI_AP_STA) {
+        mesh.stop();
+        mesh.init(MESH_SSID, MESH_PASSWORD, &userScheduler, MESH_PORT, connectMode, channel);
+    }
+
+    mesh.onNewConnection(&newConnectionCallback);
+    mesh.onChangedConnections(&changedConnectionCallback);
+    mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
+    mesh.onNodeDelayReceived(&delayReceivedCallback);
+    mesh.initOTAReceive(FIRMWARE);
+    // This node and all other nodes should ideally know the mesh contains a root,
+    // so call this on all nodes
+    mesh.setContainsRoot(true);
+
+    GetMyName();
 }
 
 void newConnectionCallback(uint32_t nodeId) {
@@ -138,6 +161,8 @@ void newConnectionCallback(uint32_t nodeId) {
     Serial.println("Send to " + String(nodeId) + " msg=" + configMesh.Json);
     mesh.sendSingle(nodeId, configSwitch.Json);
     Serial.println("Send to " + String(nodeId) + " msg=" + configSwitch.Json);
+    mesh.sendSingle(nodeId, configTimer.Json);
+    Serial.println("Send to " + String(nodeId) + " msg=" + configTimer.Json);
 }
 
 void changedConnectionCallback() {
@@ -174,6 +199,7 @@ void ConfigReceivedCallback(String type, String msg) {
     if (type == CONFIG_MESH_FILE) {
 
         configMesh.Update(msg);
+        GetMyName();
 
     } else if (type == CONFIG_SWITCH_FILE) {
 

@@ -5,8 +5,8 @@
 config_switch.json
 {
   "t":"config_switch.json",
-  "rev":13,
-  "gCnt":1,
+  "rev":14,
+  "gCnt":2,
   "g":[
     {
       "name":"Toggle",
@@ -26,7 +26,31 @@ config_switch.json
       "nCnt":1,
       "n":[
         {
-          "node":"KeGaLi",
+          "node":"KeWkLi",
+          "do":0,
+          "setState":"Tog"
+        }
+      ]
+    },
+    {
+      "name":"Toggle",
+      "tCnt":2,
+      "t":[
+        {
+          "node":"E0FlLi",
+          "di":1,
+          "state":false
+        },
+        {
+          "node":"E0FlLi",
+          "di":1,
+          "state":true
+        }
+      ],
+      "nCnt":1,
+      "n":[
+        {
+          "node":"E0FlLi",
           "do":0,
           "setState":"Tog"
         }

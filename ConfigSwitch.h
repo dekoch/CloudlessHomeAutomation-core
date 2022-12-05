@@ -4,55 +4,65 @@
 /*
 config_switch.json
 {
-  "t":"config_switch.json",
-  "rev":14,
-  "gCnt":2,
-  "g":[
+  "t": "config_switch.json",
+  "rev": 16,
+  "gCnt": 2,
+  "g": [
     {
-      "name":"Toggle",
-      "tCnt":2,
-      "t":[
+      "name": "Toggle",
+      "tCnt": 4,
+      "t": [
         {
-          "node":"KeWkGaSw",
-          "di":0,
-          "state":false
+          "node": "KeWkLi",
+          "di": 0,
+          "state": false
         },
         {
-          "node":"KeWkGaSw",
-          "di":0,
-          "state":true
+          "node": "KeWkLi",
+          "di": 0,
+          "state": true
+        },
+        {
+          "node": "KeWkGaSw",
+          "di": 0,
+          "state": false
+        },
+        {
+          "node": "KeWkGaSw",
+          "di": 0,
+          "state": true
         }
       ],
-      "nCnt":1,
-      "n":[
+      "nCnt": 1,
+      "n": [
         {
-          "node":"KeWkLi",
-          "do":0,
-          "setState":"Tog"
+          "node": "KeWkLi",
+          "do": 0,
+          "setState": "Tog"
         }
       ]
     },
     {
-      "name":"Toggle",
-      "tCnt":2,
-      "t":[
+      "name": "Toggle",
+      "tCnt": 2,
+      "t": [
         {
-          "node":"E0FlLi",
-          "di":1,
-          "state":false
+          "node": "E0FlLi",
+          "di": 0,
+          "state": false
         },
         {
-          "node":"E0FlLi",
-          "di":1,
-          "state":true
+          "node": "E0FlLi",
+          "di": 0,
+          "state": true
         }
       ],
-      "nCnt":1,
-      "n":[
+      "nCnt": 1,
+      "n": [
         {
-          "node":"E0FlLi",
-          "do":0,
-          "setState":"Tog"
+          "node": "E0FlLi",
+          "do": 0,
+          "setState": "Tog"
         }
       ]
     }

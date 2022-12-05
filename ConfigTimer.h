@@ -4,31 +4,22 @@
 /*
 config_timer.json
 {
-  "t":"config_timer.json",
-  "rev":2,
-  "nCnt":1,
-  "n":[
+  "t": "config_timer.json",
+  "rev": 3,
+  "nCnt": 1,
+  "n": [
     {
-      "name":"D1 2137932489 AP_STA",
-      "timCnt":2,
-      "tim":[
+      "name": "KeWkLi",
+      "timCnt": 1,
+      "tim": [
         {
-          "name":"Licht AUS",
-          "t":"DO0",
-          "ts":"S",
-          "d":1,
-          "u":"s",
-          "do":0,
-          "s":"R"
-        },
-        {
-          "name":"Licht AN",
-          "t":"DO0",
-          "ts":"R",
-          "d":1,
-          "u":"s",
-          "do":0,
-          "s":"S"
+          "name": "Licht AUS",
+          "t": "DO0",
+          "ts": "S",
+          "d": 6,
+          "u": "h",
+          "do": 0,
+          "s": "R"
         }
       ]
     }

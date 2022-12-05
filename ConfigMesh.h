@@ -5,8 +5,8 @@
 config_mesh.json
 {
   "t": "config_mesh.json",
-  "rev": 8,
-  "nCnt": 9,
+  "rev": 9,
+  "nCnt": 11,
   "n": [
     {
       "nodeId": 2503482707,
@@ -21,6 +21,16 @@ config_mesh.json
     {
       "nodeId": 432742653,
       "name": "E0FlLi",
+      "cm": "AP_STA"
+    },
+    {
+      "nodeId": 432770609,
+      "name": "Shelly432770609",
+      "cm": "AP_STA"
+    },
+    {
+      "nodeId": 432736461,
+      "name": "Shelly432736461",
       "cm": "AP_STA"
     },
     {

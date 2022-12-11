@@ -55,7 +55,7 @@ class TimerItem {
         return;
       }
 
-      if (_edgeStart.rising(state && TriggerState == "S" ||
+      if (_edgeStart.Rising(state && TriggerState == "S" ||
                             state == false && TriggerState == "R")) {
 
         Start();

@@ -17,7 +17,11 @@ class Edge
       _boRising = rising;
     }
 
-    bool rising(bool state)
+    void Init(bool state) {
+      _boOldState = state;
+    }
+
+    bool Rising(bool state)
     {
       if (state != _boOldState)
       {
@@ -32,7 +36,7 @@ class Edge
       return false;
     }
 
-    bool falling(bool state)
+    bool Falling(bool state)
     {
       if (state != _boOldState)
       {
@@ -47,7 +51,7 @@ class Edge
       return false;
     }
 
-    bool edge(bool state)
+    bool DetectEdge(bool state)
     {
       if (state != _boOldState)
       {

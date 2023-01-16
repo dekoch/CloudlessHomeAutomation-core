@@ -5,7 +5,7 @@
 config_mesh.json
 {
   "t": "config_mesh.json",
-  "rev": 9,
+  "rev": 10,
   "nCnt": 11,
   "n": [
     {
@@ -30,8 +30,8 @@ config_mesh.json
     },
     {
       "nodeId": 432736461,
-      "name": "Shelly432736461",
-      "cm": "AP_STA"
+      "name": "KeWkBew",
+      "cm": "STA"
     },
     {
       "nodeId": 2141195262,

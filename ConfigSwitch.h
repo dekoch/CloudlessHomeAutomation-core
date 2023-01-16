@@ -5,11 +5,11 @@
 config_switch.json
 {
   "t": "config_switch.json",
-  "rev": 16,
-  "gCnt": 2,
+  "rev": 17,
+  "gCnt": 3,
   "g": [
     {
-      "name": "Toggle",
+      "name": "KeWkLi",
       "tCnt": 4,
       "t": [
         {
@@ -39,6 +39,25 @@ config_switch.json
           "node": "KeWkLi",
           "do": 0,
           "setState": "Tog"
+        }
+      ]
+    },
+    {
+      "name": "KeWkBew",
+      "tCnt": 1,
+      "t": [
+        {
+          "node": "KeWkBew",
+          "di": 0,
+          "state": true
+        }
+      ],
+      "nCnt": 1,
+      "n": [
+        {
+          "node": "KeWkLi",
+          "do": 0,
+          "setState": "S"
         }
       ]
     },
